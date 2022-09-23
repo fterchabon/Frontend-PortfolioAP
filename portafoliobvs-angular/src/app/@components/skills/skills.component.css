@@ -1,0 +1,25 @@
+.nuevaSkill {
+    float: right;
+    background-color: #212529;
+    border-color: #212529;
+    color: #ffff;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+}
+
+.buttons {
+    flex-wrap: wrap;
+    margin: 40px;
+}
+
+.skI{
+    padding: 5px;
+    display: inline-block;
+    width:fit-content;
+    height: fit-content;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}

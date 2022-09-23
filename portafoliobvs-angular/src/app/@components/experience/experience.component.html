@@ -1,0 +1,147 @@
+<!-- Experience-->
+<section class="resume-section" id="experience">
+    <div class="resume-section-content">
+        <div class="box">
+            <button type="button" class="btn btn-sm btn-dark" class="nuevaExperiencia" target="blank" *ngIf="isLogged"
+                (click)="open(content)">
+                <i class="fa-solid fa-plus"></i></button>
+            <h2 class="mb-5">Experiencia</h2>
+        </div>
+        <div class="expeLab" *ngFor="let Experiencia of expe">
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">{{Experiencia.nombreE}}</h3>
+                    <div class="subheading mb-3">{{Experiencia.lugarE}}</div>
+                    <p>{{Experiencia.descripcionE}}</p>
+                </div>
+                <div class="buttons" style="text-align: top" *ngIf="isLogged">
+                    <button class="btn btn-sm btn-dark" type="button" (click)="openEdit(contentEdit, Experiencia)">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button style="margin-left: 5px;" class="btn btn-sm btn-danger" type="button"
+                        (click)="onDelete(Experiencia.id)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+                <div class="flex-shrink-0">
+                    <span class="text-primary">{{Experiencia.startE}} - {{Experiencia.endE}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Formulario para crear Experiencia-->
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Agregar experiencia laboral</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <form #f="ngForm" (ngSubmit)="onCreate()" novalidate>
+                <div class="form-group col-md-6">
+                    <label for="nombreE">Título:</label>
+                    <div class="input-group">
+                        <input id="nombreE" name="nombreE" class="form-control" [(ngModel)]="nombreE" required>
+                    </div>
+                </div>
+                <div class="form-group col-md-7">
+                    <label for="lugarE">Ubicación:</label>
+                    <div class="input-group">
+                        <input id="lugarE" name="lugarE" class="form-control" [(ngModel)]="lugarE" required>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="startE">Fecha de inicio:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="height: 38px;" id="basic-addon2"><i
+                                    class="fa-regular fa-calendar"></i></span>
+                        </div>
+                        <input id="startE" name="startE" class="form-control" [(ngModel)]="startE" required>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="endE">Fecha de finalización:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="height: 38px;" id="basic-addon2"><i
+                                    class="fa-regular fa-calendar"></i></span>
+                        </div>
+                        <input id="endE" name="endE" class="form-control" [(ngModel)]="endE" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descripcionE">Descripción:</label>
+                    <div class="input-group">
+                        <textarea id="descripcionE" name="descripcionE" class="form-control" rows="3"
+                            [(ngModel)]="descripcionE" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-dark" type="submit"
+                        (click)="modal.close('Save click')">Guardar</button>
+                    <button type="button" class="btn btn-outline-dark"
+                        (click)="modal.close('Save click')">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+
+    <!--Formulario para editar Experiencia-->
+    <ng-template #contentEdit let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Editar experiencia laboral</h4>
+            <button type="button" class="btn-close" aria-label="close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="editForm" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+                <div class="form-group col-md-6">
+                    <label for="nombreE">Título:</label>
+                    <div class="input-group">
+                        <input formControlName="nombreE" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group col-md-7">
+                    <label for="lugarE">Ubicación:</label>
+                    <div class="input-group">
+                        <input formControlName="lugarE" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="startE">Fecha de inicio:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="height: 38px;" id="basic-addon2"><i
+                                    class="fa-regular fa-calendar"></i></span>
+                        </div>
+                        <input formControlName="startE" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="endE">Fecha de finalización:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="height: 38px;" id="basic-addon2"><i
+                                    class="fa-regular fa-calendar"></i></span>
+                        </div>
+                        <input formControlName="endE" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descripcionE">Descripción:</label>
+                    <div class="input-group">
+                        <textarea formControlName="descripcionE" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer"><button data-dismiss="modal" class="btn btn-outline-dark"
+                        type="submit">Guardar
+                        cambios</button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+</section>
+<hr class="m-0" />

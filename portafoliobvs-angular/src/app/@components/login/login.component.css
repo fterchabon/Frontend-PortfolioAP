@@ -1,0 +1,26 @@
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #ffffff;
+    }
+
+    @media screen {
+        body {
+            padding-top: 0;
+            padding-left: 0;
+            
+          }
+
+
+    }
+
+    .text-uppercase {
+        color: #bd5d38;
+    }
+
+    .text-white-50 {
+        color: #6c757d;
+    }
+
+    .form-white {
+        color: #6c757d;
+    }

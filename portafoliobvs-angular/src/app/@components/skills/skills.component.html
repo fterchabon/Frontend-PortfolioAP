@@ -1,0 +1,132 @@
+<!--Skills-->
+<section class="resume-section" id="skills">
+    <div class="resume-section-content">
+        <div class="box">
+            <button type="button" class="btn btn-sm btn-dark" class="nuevaSkill" target="blank" *ngIf="isLogged"
+                (click)="open(content)">
+                <i class="fa-solid fa-plus"></i></button>
+            <h2 class="mb-5">Soft & Hard Skills</h2>
+        </div>
+        <div class="subheading mb-3">Herramientas y Lenguajes</div>
+        <ul class="list-inline dev-icons">
+            <li class="list-inline-item"><i class="fab fa-angular"></i></li>
+            <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
+            <li class="list-inline-item"><i class="fab fa-npm"></i></li>
+            <li class="list-inline-item"><i class="fab fa-java"></i></li>
+        </ul>
+        <div class="skI" *ngFor="let Skill of sk">
+            <circle-progress [percent]="Skill.porcentajeS" [radius]="40" [space]="-8" [outerStrokeGradient]="true"
+                [outerStrokeWidth]="8" [outerStrokeColor]="'#6c757d'" [outerStrokeGradientStopColor]="'#6c757d'"
+                [innerStrokeColor]="'#e7e8ea'" [innerStrokeWidth]="8" [imageSrc]="Skill.imgS" [showImage]="true"
+                [imageHeight]="40" [imageWidth]="30" [animation]="true" [animateTitle]="false" [animationDuration]="700"
+                [showUnits]="false" [showBackground]="false" [clockwise]="true" [startFromZero]="true" [lazy]="true"
+                [showSubtitle]="false">
+            </circle-progress>
+            <div class="buttons" style="text-align: top" *ngIf="isLogged">
+                <button class="btn btn-sm btn-dark" type="button" (click)="openEdit(contentEdit, Skill)">
+                    <i class="fa fa-edit"></i>
+                </button>
+                <button style="margin-left: 5px;" class="delete" class="btn btn-sm btn-danger" type="button"
+                    (click)="onDelete(Skill.id)">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </div>
+        </div>
+        <div class="subheading mb-3">Workflow</div>
+        <div *ngFor="let Skill of sk">
+            <ul class="fa-ul mb-0">
+                <li>
+                    <span class="fa-li"><i class="fas fa-check"></i></span>
+                    {{Skill.softS}}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--Formulario para crear Skill-->
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Agregar soft & hard skill</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <form #f="ngForm" (ngSubmit)="onCreate()" novalidate>
+                <div class="form-group col-md-4">
+                    <label for="nombreS">Nombre:</label>
+                    <div class="input-group">
+                        <input id="nombreS" name="nombreS" class="form-control" [(ngModel)]="nombreS" required>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="imgS">Seleccionar archivo:</label>
+                    <div class="input-group">
+                        <input type="text" id="imgS" name="imgS" class="form-control" lang="es" placeholder=""
+                            aria-label="" aria-describedby="basic-addon1" [(ngModel)]="imgS" required>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="porcentajeS">Porcentaje:</label>
+                    <div class="input-group">
+                        <input type="range" min="10" max="100" id="porcentajeS" name="porcentajeS"
+                            [(ngModel)]="porcentajeS" required>
+                    </div>
+                </div>
+                <div class="form-group col-md-7">
+                    <label for="softS">Soft skill:</label>
+                    <div class="input-group">
+                        <input id="softS" name="softS" class="form-control input-lg" [(ngModel)]="softS" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-dark" type="submit"
+                        (click)="modal.close('Save click')">Guardar</button>
+                    <button type="button" class="btn btn-outline-dark"
+                        (click)="modal.close('Cancel click')">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+
+    <!--Formulario para editar Skill-->
+    <ng-template #contentEdit let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Editar soft & hard skill</h4>
+            <button type="button" class="btn-close" aria-label="close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="editForm" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+                <div class="form-group col-md-4">
+                    <label for="nombreS">Nombre:</label>
+                    <div class="input-group">
+                        <input formControlName="nombreS" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="imgS">Seleccionar archivo:</label>
+                    <div class="input-group">
+                        <input formControlName="imgS" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="porcentajeS">Porcentaje:</label>
+                    <div class="input-group">
+                        <input type="range" min="10" max="100" formControlName="porcentajeS">
+                    </div>
+                </div>
+                <div class="form-group col-md-7 ">
+                    <label for="softS">Soft skill:</label>
+                    <div class="input-group">
+                        <input formControlName="softS" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer"><button data-dismiss="modal" class="btn btn-outline-dark"
+                        type="submit">Guardar
+                        cambios</button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+</section>
+<hr class="m-0" />

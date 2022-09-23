@@ -1,0 +1,103 @@
+<!-- Proyectos-->
+<section class="resume-section" id="interests">
+    <div class="resume-section-content">
+        <div class="box">
+            <button type="button" class="btn btn-sm btn-dark" class="nuevoProyecto" target="blank" *ngIf="isLogged"
+                (click)="open(content)">
+                <i class="fa-solid fa-plus"></i></button>
+            <h2 class="mb-5">Proyectos</h2>
+        </div>
+        <div class="proT" *ngFor="let Proyecto of pro">
+            <h3 class="mb-0">{{Proyecto.nombreP}}</h3>
+            <p>{{Proyecto.descripcionP}}</p>
+            <div>
+                <img src="{{Proyecto.imgP}}">
+            </div>
+            <div class="buttons" style="text-align: top" *ngIf="isLogged">
+                <button class="btn btn-sm btn-dark" type="button" (click)="openEdit(contentEdit, Proyecto)">
+                    <i class="fa fa-edit"></i>
+                </button>
+                <button style="margin-left: 5px;" class="delete" class="btn btn-sm btn-danger" type="button"
+                    (click)="onDelete(Proyecto.id)">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--Formulario para crear Proyecto-->
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Agregar Proyecto</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <form #f="ngForm" (ngSubmit)="onCreate()" novalidate>
+                <div class="form-group col-md-4">
+                    <label for="nombreP">Nombre:</label>
+                    <div class="input-group">
+                        <input id="nombreP" name="nombreP" class="form-control" [(ngModel)]="nombreP" required>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="imgP">Seleccionar archivo:</label>
+                    <div class="input-group">
+                        <input type="file" id="imgP" name="imgP" class="form-control" lang="es" placeholder=""
+                            aria-label="" aria-describedby="basic-addon1" [(ngModel)]="imgP" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descripcionP">Descripción:</label>
+                    <div class="input-group">
+                        <textarea id="descripcionP" name="descripcionP" class="form-control input-lg" rows="3"
+                            [(ngModel)]="descripcionP" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-dark" type="submit"
+                        (click)="modal.close('Save click')">Guardar</button>
+                    <button type="button" class="btn btn-outline-dark"
+                        (click)="modal.close('Cancel click')">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+
+    <!--Formulario para editar Proyecto-->
+    <ng-template #contentEdit let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Editar proyecto</h4>
+            <button type="button" class="btn-close" aria-label="close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="editForm" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+                <div class="form-group col-md-4">
+                    <label for="nombreP">Nombre:</label>
+                    <div class="input-group">
+                        <input formControlName="nombreP" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="imgP">Seleccionar archivo:</label>
+                    <div class="input-group">
+                        <input formControlName="imgP" type="file" id="imgS" name="imgS" class="form-control" lang="es"
+                            placeholder="" aria-label="" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descripcionP">Descripción:</label>
+                    <div class="input-group">
+                        <textarea formControlName="descripcionP" class="form-control input-lg" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer"><button data-dismiss="modal" class="btn btn-outline-dark"
+                        type="submit">Guardar
+                        cambios</button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+</section>
+<hr class="m-0" />

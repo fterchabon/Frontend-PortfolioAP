@@ -1,0 +1,80 @@
+<!-- About-->
+<section class="resume-section" id="about">
+    <div class="resume-section-content">
+        <div class="buttons" style="text-align: right; position: relative;" *ngIf="isLogged">
+            <button class="btn btn-sm btn-dark" type="button" (click)="openEdit(contentEdit, persona)"
+                style="position: absolute; top: 0; bottom: 0; left: 120px; right: 0; margin: 0 auto; width: 30px; height: 30px;">
+                <i class="fa fa-edit"></i>
+            </button>
+        </div>
+            <h1 class="mb-0">
+                {{persona.nombre}}
+                <span class="text-primary">{{persona.apellido}}</span>
+            </h1>
+
+            <div class="subheading mb-5">
+                {{persona.titulo}} <img src="assets/img/apro2.png" alt="..."> -
+                <a href="mailto:{{persona.email}}">contact</a>
+            </div>
+            <p class="lead mb-5">{{persona.acercaDe}}</p>
+        <div class="social-icons">
+            <a class="social-icon" href="https://www.linkedin.com/in/boris-von-scheidt/" target="_blank"><i
+                    class="fab fa-linkedin-in"></i></a>
+            <a class="social-icon" href="https://github.com/fterchabon" target="_blank"><i
+                    class="fab fa-github"></i></a>
+            <a class="social-icon" href="https://www.facebook.com/boris.vonscheidt/" target="_blank"><i
+                    class="fab fa-facebook-f"></i></a>
+        </div>
+    </div>
+
+    <!--Formulario para editar Persona-->
+    <ng-template #contentEdit let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Editar perfil</h4>
+            <button type="button" class="btn-close" aria-label="close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="editForm" (ngSubmit)="onEdit()" novalidate #f="ngForm">
+                <div class="form-group col-sm-6">
+                    <label for="nombre">Nombre:</label>
+                    <div class="input-group">
+                        <input formControlName="nombre" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="apellido">Apellido:</label>
+                    <div class="input-group">
+                        <input formControlName="apellido" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="titulo">Título:</label>
+                    <div class="input-group">
+                        <input formControlName="titulo" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group col-sm-7">
+                    <label for="email">Email:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                        </div>
+                        <input formControlName="email" class="form-control" type="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="acercaDe">Descripción:</label>
+                    <div class="input-group">
+                        <textarea formControlName="acercaDe" class="form-control" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer"><button data-dismiss="modal" class="btn btn-outline-dark"
+                        type="submit">Guardar
+                        cambios</button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+</section>
+<hr class="m-0" />
