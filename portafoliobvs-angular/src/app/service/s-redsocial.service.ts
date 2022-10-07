@@ -7,7 +7,8 @@ import { Redsocial } from '../model/redsocial';
   providedIn: 'root'
 })
 export class SRedsocialService {
-  rdURL = 'http://localhost:8080/reds/'
+  rdURL = 'https://backendbvs-ap.herokuapp.com/reds/';
+  //rdURL = 'http://localhost:8080/reds/';
 
   constructor(private httpClient: HttpClient) { }
 
