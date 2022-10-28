@@ -1,20 +1,25 @@
-
-    .btn-img {
-    top: 50%;
-    left: 70%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    color: white;
-    border: none;
-    cursor: pointer;
-    background-color: #212529;
-    border-color: #212529;
-    padding: 0.15rem 0.4rem;
-    font-size: 0.875rem;
-    border-radius: 0.2rem;
-  }
-
-  .form-group {
-    margin-bottom: 1rem;
+.btn-img {
+  top: 50%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  background-color: #212529;
+  border-color: #212529;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.875rem;
+  border-radius: 0.2rem;
 }
-  
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.imagen {
+  padding: 20px 10px 10px;
+  display: flex;
+  align-items: center;
+  width: 170px;
+}

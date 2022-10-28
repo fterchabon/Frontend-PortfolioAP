@@ -32,6 +32,7 @@ export class ExperienceComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.cargarExperiencia();
 
     this.editForm = this.fb.group({
       nombreE: [''],
@@ -41,7 +42,6 @@ export class ExperienceComponent implements OnInit {
       descripcionE: ['']
     });
 
-    this.cargarExperiencia();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     } else {
@@ -80,10 +80,9 @@ export class ExperienceComponent implements OnInit {
   }
 
   onUpdate(): void {
-    console.log(this.editForm.value);
     this.sExperiencia.update(this.expLab.id, this.editForm.value).subscribe(
       data => {
-        this.ngOnInit();
+        window.location.reload();
         this.modalService.dismissAll();
       }, err => {
         alert("Error al modificar experiencia");
@@ -133,6 +132,5 @@ export class ExperienceComponent implements OnInit {
         this.expLab = data;
       }
     )
-    console.log(expLab.id);
   }
 }

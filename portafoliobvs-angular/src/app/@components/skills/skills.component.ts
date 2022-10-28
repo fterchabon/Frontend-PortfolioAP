@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Skill } from 'src/app/model/skill';
+import { ImageService } from 'src/app/service/image.service';
 import { SSkillService } from 'src/app/service/s-skill.service';
 import { TokenService } from 'src/app/service/token.service';
 
@@ -25,12 +26,15 @@ export class SkillsComponent implements OnInit {
     private sSkill: SSkillService,
     private tokenService: TokenService,
     private modalService: NgbModal,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public imageService: ImageService
   ) { }
 
   isLogged = false
 
   ngOnInit(): void {
+
+    this.cargarSkill();
 
     this.editForm = this.fb.group({
       nombreS: [''],
@@ -39,7 +43,7 @@ export class SkillsComponent implements OnInit {
       softS: [''],
     });
 
-    this.cargarSkill();
+
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     } else {
@@ -76,11 +80,17 @@ export class SkillsComponent implements OnInit {
     }
   }
 
+  uploadImageS($event: any) {
+    const id = this.skI.id;
+    const name = "skill_" + id;
+    this.imageService.uploadImageS($event, name);
+  }
+
   onUpdate(): void {
-    console.log(this.editForm.value);
+    this.skI.imgS = this.imageService.url2;
     this.sSkill.update(this.skI.id, this.editForm.value).subscribe(
       data => {
-        this.ngOnInit();
+        window.location.reload();
         this.modalService.dismissAll();
       }, err => {
         alert("Error al editar skill");
@@ -129,6 +139,5 @@ export class SkillsComponent implements OnInit {
           this.skI = data;
         }
       )
-      console.log(skI.id);
     }
 }

@@ -31,6 +31,8 @@ export class EducationComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.cargarEducacion();
+
     this.editForm = this.fb.group({
       nombreEd: [''],
       startEd: [''],
@@ -38,7 +40,6 @@ export class EducationComponent implements OnInit {
       descripcionEd: ['']
     });
 
-    this.cargarEducacion();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     } else {
@@ -77,10 +78,9 @@ export class EducationComponent implements OnInit {
   }
 
   onUpdate(): void {
-    console.log(this.editForm.value);
     this.sEducacion.update(this.eduC.id, this.editForm.value).subscribe(
       data => {
-        this.ngOnInit();
+        window.location.reload();
         this.modalService.dismissAll();
       }, err => {
         alert("Error al editar educacion");
@@ -129,6 +129,5 @@ export class EducationComponent implements OnInit {
         this.eduC = data;
       }
     )
-    console.log(eduC.id);
   }
 }

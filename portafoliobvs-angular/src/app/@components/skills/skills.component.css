@@ -23,3 +23,10 @@
 .form-group {
     margin-bottom: 1rem;
 }
+
+.imagen {
+    padding: 20px 10px 10px;
+    display: flex;
+    align-items: center;
+    width: 170px;
+  }

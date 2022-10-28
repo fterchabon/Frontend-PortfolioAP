@@ -7,6 +7,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginUsuario } from 'src/app/model/login-usuario';
 import { AuthService } from 'src/app/service/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ImageService } from 'src/app/service/image.service';
 
 @Component({
   selector: 'app-navbar',
@@ -39,15 +40,18 @@ export class NavbarComponent implements OnInit {
     private personaService: PersonaService,
     private modalService: NgbModal,
     private authService: AuthService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    public imageService: ImageService) { }
 
   ngOnInit(): void {
+
+    this.personaService.detail(1).subscribe(data => { this.persona = data })
+
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     } else {
       this.isLogged = false;
     }
-    this.personaService.getPersona().subscribe(data => { this.persona = data })
 
     if (this.tokenService.getToken()) {
       this.isLogged = true;
@@ -64,6 +68,7 @@ export class NavbarComponent implements OnInit {
       img: ['']
     });
   }
+
 
   onLogOut(): void {
     this.tokenService.logOut();
@@ -91,11 +96,11 @@ export class NavbarComponent implements OnInit {
   }
 
   onEdit(): void {
-    console.log(this.editForm.value);
-    this.personaService.editPersona(this.per.id, this.editForm.value).subscribe(
+    this.persona.img = this.imageService.url;
+    this.personaService.update(this.per.id, this.editForm.value).subscribe(
       data => {
-        this.ngOnInit();
         this.modalService.dismissAll();
+        window.location.reload();
       }, err => {
         alert("Error al editar img");
         this.ngOnInit();
@@ -104,14 +109,14 @@ export class NavbarComponent implements OnInit {
     )
   }
 
-  open(modalLoginForm: any) {
-    this.modalService.open(modalLoginForm, { ariaLabelledBy: 'modal-basic-title', centered: true }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+  uploadImageP($event: any) {
+    const id = this.per.id;
+    const name = "perfil_" + id;
+    this.imageService.uploadImageP($event, name);
   }
-  //Abrir formulario para editar persona
+
+
+  //Abrir modal para editar perfil
   imgEdit(targetModal: any, per: persona) {
     this.modalService.open(targetModal, {
       centered: true,
@@ -123,17 +128,25 @@ export class NavbarComponent implements OnInit {
       nombre: per.nombre,
       apellido: per.apellido,
       titulo: per.titulo,
-      email: per.titulo,
+      email: per.email,
       acercaDe: per.acercaDe,
       img: per.img
     });
 
-    this.personaService.getPersona().subscribe(
+    this.personaService.detail(1).subscribe(
       data => {
         this.per = data;
       }
     )
-    console.log(per.id);
+  }
+
+  //Abrir modal para logearse
+  open(modalLoginForm: any) {
+    this.modalService.open(modalLoginForm, { ariaLabelledBy: 'modal-basic-title', centered: true }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
   }
 
   private getDismissReason(reason: any): string {

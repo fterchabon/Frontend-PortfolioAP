@@ -32,7 +32,7 @@ editForm: FormGroup = null;
     isLogged = false
   
   ngOnInit(): void {
-    this.personaService.getPersona().subscribe(data =>{this.persona = data})
+    this.personaService.detail(1).subscribe(data =>{this.persona = data})
 
     if (this.tokenService.getToken()) {
       this.isLogged = true;
@@ -51,27 +51,16 @@ editForm: FormGroup = null;
   }
 
   onEdit(): void {
-    console.log(this.editForm.value);
-    this.personaService.editPersona(this.per.id, this.editForm.value).subscribe(
+    this.personaService.update(this.per.id, this.editForm.value).subscribe(
       data => {
-        this.ngOnInit();
         this.modalService.dismissAll();
+        window.location.reload();
       }, err => {
         alert("Error al editar perfil");
         this.ngOnInit();
         this.modalService.dismissAll();
       }
     )
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
   }
 
     //Abrir formulario para editar persona
@@ -91,12 +80,11 @@ editForm: FormGroup = null;
         img: per.img
       });
   
-      this.personaService.getPersona().subscribe(
+      this.personaService.detail(1).subscribe(
         data => {
           this.per = data;
         }
       )
-      console.log(per.id);
     }
 
 }

@@ -67,10 +67,12 @@
         <div class="modal-body">
             <form [formGroup]="editForm" (ngSubmit)="onEdit()" novalidate #f="ngForm">
                 <div class="form-group col-sm-6">
-                    <label for="img">Seleccionar nueva imagen de perfil:</label>
+                    <label for="img" style="padding-bottom: 10px">Seleccionar nueva imagen de perfil:</label>
                     <div class="input-group">
-                       <!-- <input  type="file" id="img" formControlName="img" class="form-control"> -->
-                        <input  id="img" formControlName="img" class="form-control">
+                       <input  type="file" id="img" class="form-control" (change)="uploadImageP($event)" accept=".jpg, .png, .jpeg"> 
+                    </div>
+                    <div class="imagen">
+                        <img [src]="imageService.url" width="150px">
                     </div>
                 </div>
                 <div class="modal-footer"><button data-dismiss="modal" class="btn btn-outline-dark"

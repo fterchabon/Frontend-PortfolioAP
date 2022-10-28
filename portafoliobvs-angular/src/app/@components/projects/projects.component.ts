@@ -31,13 +31,14 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.cargarProyecto();
+
     this.editForm = this.fb.group({
       nombreP: [''],
       imgP: [''],
       descripcionP: ['']
     });
 
-    this.cargarProyecto();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     } else {
@@ -75,10 +76,9 @@ export class ProjectsComponent implements OnInit {
   }
 
   onUpdate(): void {
-    console.log(this.editForm.value);
     this.sProyecto.update(this.proT.id, this.editForm.value).subscribe(
       data => {
-        this.ngOnInit();
+        window.location.reload();
         this.modalService.dismissAll();
       }, err => {
         alert("Error al editar proyecto");
@@ -126,7 +126,6 @@ export class ProjectsComponent implements OnInit {
         this.proT = data;
       }
     )
-    console.log(proT.id);
   }
 
 }
