@@ -36,8 +36,8 @@ export class ImageService {
 
   public uploadImageS($event: any, name: string){
     const file = $event.target.files[0];
-    const imgRef = ref(this.storage, `imagesSkill/`+ name)
-    uploadBytes(imgRef, file)
+    const imgRefS = ref(this.storage, `imagesSkillP/`+ name)
+    uploadBytes(imgRefS, file)
     .then(response => (this.getImagesS()))
     .catch(error => console.log(error)
     )
@@ -45,8 +45,8 @@ export class ImageService {
 
 
   getImagesS(){
-    const imagesRef = ref(this.storage, 'imagesSkill')
-    list(imagesRef)
+    const imagesRefS = ref(this.storage, 'imagesSkillP')
+    list(imagesRefS)
     .then(async response => {
       for(let item of response.items){
         this.url2 = await getDownloadURL(item);

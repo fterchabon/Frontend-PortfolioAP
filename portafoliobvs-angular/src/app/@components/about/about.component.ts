@@ -54,7 +54,7 @@ editForm: FormGroup = null;
     this.personaService.update(this.per.id, this.editForm.value).subscribe(
       data => {
         this.modalService.dismissAll();
-        window.location.reload();
+        this.ngOnInit();
       }, err => {
         alert("Error al editar perfil");
         this.ngOnInit();

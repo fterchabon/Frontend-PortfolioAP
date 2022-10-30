@@ -17,7 +17,8 @@
                     <button class="btn btn-sm btn-dark" type="button" (click)="openEdit(contentEdit, Educacion)">
                         <i class="fa fa-edit"></i>
                     </button>
-                    <button  style="margin-left: 5px;" class="delete" class="btn btn-sm btn-danger" type="button" (click)="onDelete(Educacion.id)">
+                    <button style="margin-left: 5px;" class="delete" class="btn btn-sm btn-danger" type="button"
+                        (click)="onDelete(Educacion.id)">
                         <i class="fa fa-trash"></i>
                     </button>
                 </div>
@@ -46,8 +47,9 @@
                     <label for="startEd">Fecha de inicio:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" style="height: 38px;" id="basic-addon2"><i class="fa-regular fa-calendar"></i></span>
-                          </div>
+                            <span class="input-group-text" style="height: 38px;" id="basic-addon2"><i
+                                    class="fa-regular fa-calendar"></i></span>
+                        </div>
                         <input id="startEd" name="startEd" class="form-control" [(ngModel)]="startEd" required>
                     </div>
                 </div>
@@ -55,8 +57,9 @@
                     <label for="endEd">Fecha de finalización:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" style="height: 38px;" id="basic-addon2"><i class="fa-regular fa-calendar"></i></span>
-                          </div>
+                            <span class="input-group-text" style="height: 38px;" id="basic-addon2"><i
+                                    class="fa-regular fa-calendar"></i></span>
+                        </div>
                         <input id="endEd" name="endEd" class="form-control" [(ngModel)]="endEd" required>
                     </div>
                 </div>
@@ -68,8 +71,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-outline-dark" type="submit"
-                        (click)="modal.close('Save click')">Guardar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-dark"
+                        type="submit">Guardar</button>
                     <button type="button" class="btn btn-outline-dark"
                         (click)="modal.close('Cancel click')">Cancelar</button>
                 </div>
@@ -96,8 +99,9 @@
                     <label for="startEd">Fecha de inicio:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" style="height: 38px;" id="basic-addon2"><i class="fa-regular fa-calendar"></i></span>
-                          </div>
+                            <span class="input-group-text" style="height: 38px;" id="basic-addon2"><i
+                                    class="fa-regular fa-calendar"></i></span>
+                        </div>
                         <input formControlName="startEd" class="form-control">
                     </div>
                 </div>
@@ -105,8 +109,9 @@
                     <label for="endEd">Fecha de finalización:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" style="height: 38px;" id="basic-addon2"><i class="fa-regular fa-calendar"></i></span>
-                          </div>
+                            <span class="input-group-text" style="height: 38px;" id="basic-addon2"><i
+                                    class="fa-regular fa-calendar"></i></span>
+                        </div>
                         <input formControlName="endEd" class="form-control">
                     </div>
                 </div>

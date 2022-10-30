@@ -90,8 +90,8 @@ export class SkillsComponent implements OnInit {
     this.skI.imgS = this.imageService.url2;
     this.sSkill.update(this.skI.id, this.editForm.value).subscribe(
       data => {
-        window.location.reload();
         this.modalService.dismissAll();
+        this.ngOnInit();
       }, err => {
         alert("Error al editar skill");
         this.ngOnInit();

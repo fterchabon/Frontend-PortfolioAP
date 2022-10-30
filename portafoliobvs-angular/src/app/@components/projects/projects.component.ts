@@ -78,8 +78,8 @@ export class ProjectsComponent implements OnInit {
   onUpdate(): void {
     this.sProyecto.update(this.proT.id, this.editForm.value).subscribe(
       data => {
-        window.location.reload();
         this.modalService.dismissAll();
+        this.ngOnInit();
       }, err => {
         alert("Error al editar proyecto");
         this.ngOnInit();

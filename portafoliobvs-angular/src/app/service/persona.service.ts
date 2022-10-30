@@ -11,16 +11,6 @@ export class PersonaService {
   URL = environment.URL + 'personas/';
 
   constructor(private httpClient: HttpClient) { }
-  
-  /*
-  public getPersona(): Observable<persona> {
-    return this.http.get<persona>(this.URL + 'traer/perfil');
-
-  }
-  public editPersona(id: number, Persona: persona): Observable<any> {
-    return this.http.put<any>(this.URL + `editar/${id}`, Persona);
-  }
-  */
 
   public lista(): Observable<persona[]>{
     return this.httpClient.get<persona[]>(this.URL + 'lista');

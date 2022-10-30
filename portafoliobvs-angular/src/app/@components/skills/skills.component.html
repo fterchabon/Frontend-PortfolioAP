@@ -58,11 +58,13 @@
                         <input id="nombreS" name="nombreS" class="form-control" [(ngModel)]="nombreS" required>
                     </div>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-7">
                     <label for="imgS">Seleccionar archivo:</label>
                     <div class="input-group">
-                        <input type="text" id="imgS" name="imgS" class="form-control" lang="es" placeholder=""
-                            aria-label="" aria-describedby="basic-addon1" [(ngModel)]="imgS" required>
+                        <input type="file" id="imgS" class="form-control" accept=".jpg, .png, .jpeg, .svg">
+                    </div>
+                    <div class="imagen">
+                        <img [src]="" width="100px">
                     </div>
                 </div>
                 <div class="form-group col-md-4">
@@ -79,8 +81,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-outline-dark" type="submit"
-                        (click)="modal.close('Save click')">Guardar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-dark"
+                        type="submit">Guardar</button>
                     <button type="button" class="btn btn-outline-dark"
                         (click)="modal.close('Cancel click')">Cancelar</button>
                 </div>
@@ -106,7 +108,8 @@
                 <div class="form-group col-md-7">
                     <label for="imgS">Seleccionar archivo:</label>
                     <div class="input-group">
-                        <input type="file" class="form-control" (change)="uploadImageS($event)" accept=".jpg, .png, .jpeg, .svg">
+                        <input type="file" id="imgS" class="form-control" (change)="uploadImageS($event)"
+                            accept=".jpg, .png, .jpeg, .svg">
                     </div>
                     <div class="imagen">
                         <img [src]="imageService.url2" width="100px">

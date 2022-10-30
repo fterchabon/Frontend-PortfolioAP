@@ -9,7 +9,7 @@
         </div>
         <div class="proT" *ngFor="let Proyecto of pro">
             <h3 class="mb-0">{{Proyecto.nombreP}}</h3>
-            <p>{{Proyecto.descripcionP}}</p>
+            <p class="mb-0">{{Proyecto.descripcionP}}</p>
             <div>
                 <img src="{{Proyecto.imgP}}">
             </div>
@@ -44,8 +44,8 @@
                 <div class="form-group col-md-6">
                     <label for="imgP">Seleccionar archivo:</label>
                     <div class="input-group">
-                        <input type="file" id="imgP" name="imgP" class="form-control" lang="es" placeholder=""
-                            aria-label="" aria-describedby="basic-addon1" [(ngModel)]="imgP" required>
+                        <input type="file" id="imgP" class="form-control" lang="es" placeholder=""
+                            aria-label="" aria-describedby="basic-addon1">
                     </div>                    
                 </div>
                 -->
@@ -57,8 +57,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-outline-dark" type="submit"
-                        (click)="modal.close('Save click')">Guardar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-dark"
+                        type="submit">Guardar</button>
                     <button type="button" class="btn btn-outline-dark"
                         (click)="modal.close('Cancel click')">Cancelar</button>
                 </div>
@@ -85,7 +85,7 @@
                 <div class="form-group col-md-6">
                     <label for="imgP">Seleccionar archivo:</label>
                     <div class="input-group">
-                        <input formControlName="imgP" type="file" id="imgS" name="imgS" class="form-control" lang="es"
+                        <input type="file" id="imgS" class="form-control" lang="es"
                             placeholder="" aria-label="" aria-describedby="basic-addon1">
                     </div>
                 </div>

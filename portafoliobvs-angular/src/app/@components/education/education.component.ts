@@ -80,8 +80,8 @@ export class EducationComponent implements OnInit {
   onUpdate(): void {
     this.sEducacion.update(this.eduC.id, this.editForm.value).subscribe(
       data => {
-        window.location.reload();
         this.modalService.dismissAll();
+        this.ngOnInit();
       }, err => {
         alert("Error al editar educacion");
         this.ngOnInit();

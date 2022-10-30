@@ -82,8 +82,8 @@ export class ExperienceComponent implements OnInit {
   onUpdate(): void {
     this.sExperiencia.update(this.expLab.id, this.editForm.value).subscribe(
       data => {
-        window.location.reload();
         this.modalService.dismissAll();
+        this.ngOnInit();
       }, err => {
         alert("Error al modificar experiencia");
         this.ngOnInit();

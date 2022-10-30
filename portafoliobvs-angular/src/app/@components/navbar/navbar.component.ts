@@ -100,7 +100,6 @@ export class NavbarComponent implements OnInit {
     this.personaService.update(this.per.id, this.editForm.value).subscribe(
       data => {
         this.modalService.dismissAll();
-        window.location.reload();
       }, err => {
         alert("Error al editar img");
         this.ngOnInit();
