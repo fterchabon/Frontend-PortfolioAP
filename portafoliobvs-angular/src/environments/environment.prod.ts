@@ -10,6 +10,6 @@ export const environment = {
   },
   production: true,
 
-  URL: 'https://backendbvs-ap.herokuapp.com/'
+  URL: 'https://portfolioap-fterchabon.koyeb.app/'
   
 };
